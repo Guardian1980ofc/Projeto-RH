@@ -4,9 +4,19 @@ from django.contrib.auth.models import User
 class BaseModel(models.Model): #Aplicando o conceito DRY
     criado_em = models.DateTimeField(auto_now_add=True)
     atualizado_em = models.DateTimeField(auto_now=True)
+    ativo = models.BooleanField(default=True) # Campo para o Soft Delete
 
     class Meta:
         abstract = True
+
+    def delete(self):
+        """Sobrescreve o método delete para apenas desativar o registro"""
+        self.ativo = False
+        self.save()
+
+    def hard_delete(self):
+        """O delete definitivo(CUIDADO)"""
+        super(BaseModel, self).delete()
 
 class Empresa(BaseModel):  #Ele não depende de ninguém, mas outros dependerão dele.
     nome = models.CharField(max_length=100)
