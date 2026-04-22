@@ -1,10 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# O Porteiro Especializado
+class ActiveManager(models.Manager):
+    def get_queryset(self):
+        # Sempre filtra para retornar apenas o que está ativo=True
+        return super().get_queryset().filter(ativo=True)
+
 class BaseModel(models.Model): #Aplicando o conceito DRY
     criado_em = models.DateTimeField(auto_now_add=True)
     atualizado_em = models.DateTimeField(auto_now=True)
     ativo = models.BooleanField(default=True) # Campo para o Soft Delete
+
+    # Definindo os Gerenciadores (Managers)
+    objects = models.Manager() # Manager padrão (acessa tudo)
+    active = ActiveManager()   # Manager customizado (acessa só ativos)
 
     class Meta:
         abstract = True
