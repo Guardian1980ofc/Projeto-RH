@@ -1,0 +1,30 @@
+{% extends 'vagas/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card border-danger shadow-sm mt-5">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0">Confirmar Exclusão</h4>
+            </div>
+            <div class="card-body p-4 text-center">
+                <p class="lead">Você tem certeza que deseja remover a vaga:</p>
+                <h3 class="fw-bold text-danger mb-4">"{{ object.titulo }}"</h3>
+
+                <div class="alert alert-warning small">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Esta ação não poderá ser desfeita e a vaga deixará de aparecer para os candidatos.
+                </div>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <a href="{% url 'vaga_list' %}" class="btn btn-secondary px-4">Cancelar</a>
+                        <button type="submit" class="btn btn-danger px-4">Sim, Remover Vaga</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

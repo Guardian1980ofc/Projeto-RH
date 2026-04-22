@@ -3,7 +3,7 @@
 {% block content %}
 <section class="text-center py-5">
     <div class="mb-5">
-        <h1 class="display-4 fw-bold">Bem-vindo ao Netwatch RH</h1>
+        <h1 class="display-4 fw-bold text-dark">Bem-vindo ao Netwatch RH</h1>
         <p class="lead">O ponto de encontro entre grandes empresas e talentos excepcionais.</p>
         <p class="text-muted">Para começar, escolha o seu caminho abaixo:</p>
     </div>
@@ -11,20 +11,22 @@
     <div class="row justify-content-center g-4">
 
         <div class="col-md-5">
-            <div class="card h-100 border-2">
-                <div class="card-body p-5">
-                    <h2 class="h3 mb-3">Empresa Contratante</h2>
-                    <p>Publique vagas, gerencie candidaturas e encontre o profissional ideal para sua equipe.</p>
-                    <a href="#" class="btn btn-outline-dark btn-lg w-100 mt-3">Acessar Painel da Empresa</a>
+            <div class="card h-100 border-2 shadow-sm">
+                <div class="card-body p-5 d-flex flex-column">
+                    <h2 class="h3 mb-3 fw-bold">Empresa Contratante</h2>
+                    <p class="flex-grow-1">Publique vagas, gerencie candidaturas e encontre o profissional ideal para
+                        sua equipe.</p>
+                    <a href="{% url 'login_empresa' %}" class="btn btn-dark btn-lg w-100 mt-3">Sou Empresa</a>
                 </div>
             </div>
         </div>
 
         <div class="col-md-5">
             <div class="card h-100 border-primary border-2 shadow-sm">
-                <div class="card-body p-5">
-                    <h2 class="h3 mb-3">Busca de Vagas</h2>
-                    <p>Encontre a oportunidade perfeita para sua carreira e candidate-se em poucos cliques.</p>
+                <div class="card-body p-5 d-flex flex-column">
+                    <h2 class="h3 mb-3 fw-bold text-primary">Busca de Vagas</h2>
+                    <p class="flex-grow-1">Encontre a oportunidade perfeita para sua carreira e candidate-se em poucos
+                        cliques.</p>
                     <a href="{% url 'vaga_list' %}" class="btn btn-primary btn-lg w-100 mt-3">Ver Vagas Disponíveis</a>
                 </div>
             </div>

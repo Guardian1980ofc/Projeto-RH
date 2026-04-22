@@ -1,0 +1,37 @@
+{% extends 'vagas/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow border-0 mt-5">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold text-primary">Acesso do Candidato</h2>
+                    <p class="text-muted">Informe seus dados para prosseguir</p>
+                </div>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-semibold">E-mail</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="exemplo@email.com"
+                            required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="cpf" class="form-label fw-semibold">CPF</label>
+                        <input type="text" name="cpf" id="cpf" class="form-control" placeholder="000.000.000-00"
+                            required>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">Entrar no Portal</button>
+                        <a href="{% url 'home' %}" class="btn btn-outline-secondary">Voltar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

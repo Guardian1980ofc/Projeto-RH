@@ -31,7 +31,7 @@ class BaseModel(models.Model): #Aplicando o conceito DRY
 class Empresa(BaseModel):  #Ele não depende de ninguém, mas outros dependerão dele.
     nome = models.CharField(max_length=100)
     site = models.URLField(blank=True)  # O site é opcional (blank=True)
-    email_contato = models.EmailField()
+    email_contato = models.EmailField(unique=True)
 
     def __str__(self):
         return self.nome
