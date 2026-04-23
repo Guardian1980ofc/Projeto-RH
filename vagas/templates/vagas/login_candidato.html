@@ -3,32 +3,36 @@
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-5">
-        <div class="card shadow border-0 mt-5">
+        <div class="card shadow-sm border-0">
             <div class="card-body p-5">
                 <div class="text-center mb-4">
-                    <h2 class="fw-bold text-primary">Acesso do Candidato</h2>
-                    <p class="text-muted">Informe seus dados para prosseguir</p>
+                    <h2 class="fw-bold">Área do Candidato</h2>
+                    <p class="text-muted">Identifique-se para se candidatar às vagas</p>
                 </div>
 
-                <form method="post">
+                <form method="POST">
                     {% csrf_token %}
 
                     <div class="mb-3">
-                        <label for="email" class="form-label fw-semibold">E-mail</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="exemplo@email.com"
+                        <label class="form-label fw-bold">Seu Nome</label>
+                        <input type="text" name="nome" class="form-control form-control-lg" placeholder="Ex: João Silva"
                             required>
                     </div>
 
                     <div class="mb-4">
-                        <label for="cpf" class="form-label fw-semibold">CPF</label>
-                        <input type="text" name="cpf" id="cpf" class="form-control" placeholder="000.000.000-00"
+                        <label class="form-label fw-bold">CPF</label>
+                        <input type="text" name="cpf" class="form-control form-control-lg" placeholder="000.000.000-00"
                             required>
+                        <div class="form-text">Apenas números ou com pontos e traço.</div>
                     </div>
 
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary btn-lg">Entrar no Portal</button>
-                        <a href="{% url 'home' %}" class="btn btn-outline-secondary">Voltar</a>
-                    </div>
+                    <button type="submit" class="btn btn-dark w-100 py-2 fw-bold mb-3">
+                        Acessar Vagas
+                    </button>
+
+                    <a href="{% url 'home' %}" class="btn btn-outline-secondary w-100 py-2">
+                        Voltar
+                    </a>
                 </form>
             </div>
         </div>

@@ -22,14 +22,35 @@ class VagaListView(ListView):
 
 # --- VIEWS DE LOGIN (SISTEMA DE ESCOLHA) ---
 
-class LoginCandidatoView(TemplateView):
-    template_name = 'vagas/login_candidato.html' # Login via CPF
+# --- OBSERVAÇÃO ARQUITETURAL: USO DE FUNCTION-BASED VIEWS (FBV) ---
+# Optei por utilizar FBVs para os fluxos de identificação (Empresa e Candidato)
+# por oferecerem controle total e explícito sobre o ciclo de requisição/resposta.
+#
+# 1. No Login da Empresa: Facilita a autenticação customizada cruzando dados 
+#    da tabela Empresa (CNPJ/E-mail) com o modelo User padrão.
+# 2. No Login do Candidato: Permite a persistência de dados via request.session 
+#    sem a necessidade imediata de persistência em banco de dados, tornando o 
+#    fluxo de candidatura mais ágil e menos burocrático.
+# Esse controle granular é mais intuitivo em FBVs do que sobrescrever múltiplos 
+# métodos de uma Class-Based View (CBV) padrão de login.
 
-# OBSERVAÇÃO TÉCNICA: Optei por Function-Based View para o login da empresa 
-# devido à necessidade de uma autenticação customizada (CNPJ/E-mail).
-# Diferente das CBVs padrões, a FBV oferece controle total e explícito sobre o 
-# processamento do POST, facilitando a validação de campos que não pertencem 
-# ao modelo de usuário padrão do Django.
+def login_candidato(request):
+    if request.method == 'POST':
+        cpf = request.POST.get('cpf')
+        nome = request.POST.get('nome')
+        
+        if cpf and nome:
+            # Salvamos o CPF e o Nome na sessão do navegador
+            # Assim não precisamos de uma tabela de 'Candidato' agora
+            request.session['candidato_cpf'] = cpf
+            request.session['candidato_nome'] = nome
+            messages.success(request, f"Olá {nome}, você já pode se candidatar às vagas!")
+            return redirect('vaga_list')
+        else:
+            messages.error(request, "Preencha o nome e o CPF para continuar.")
+            
+    return render(request, 'vagas/login_candidato.html')
+
 def login_empresa(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -92,6 +113,7 @@ class VagaDetailView(DetailView):
     context_object_name = 'vaga'
 
 def logout_view(request):
-    logout(request)
+    logout(request) # Limpa o login da empresa
+    request.session.flush() # Limpa o CPF e Nome do candidato da sessão
     messages.info(request, "Você saiu com sucesso!")
     return redirect('home')

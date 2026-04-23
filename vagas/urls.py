@@ -7,9 +7,8 @@ urlpatterns = [
     path('vagas/', views.VagaListView.as_view(), name='vaga_list'),
     
     # Login (Identificação)
-    path('login/candidato/', views.LoginCandidatoView.as_view(), name='login_candidato'),
-    
     # Removido o .as_view() pois agora é uma função
+    path('login/candidato/', views.login_candidato, name='login_candidato'),    
     path('login/empresa/', views.login_empresa, name='login_empresa'), 
     
     # CRUD Empresa (O motor do sistema)

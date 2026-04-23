@@ -3,28 +3,52 @@
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="card shadow-sm border-0 mt-4">
+        <div class="card shadow-sm border-0">
             <div class="card-body p-5">
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                    <h2 class="fw-bold text-primary">{{ vaga.titulo }}</h2>
+                <div class="d-flex justify-content-between align-items-start mb-4">
+                    <div>
+                        <h1 class="fw-bold text-primary">{{ vaga.titulo }}</h1>
+                        <p class="text-muted">
+                            <i class="bi bi-building"></i> {{ vaga.empresa.nome }} |
+                            <i class="bi bi-calendar3"></i> Postado em: {{ vaga.criado_em|date:"d/m/Y" }}
+                        </p>
+                    </div>
                     <span class="badge bg-success fs-6">R$ {{ vaga.salario }}</span>
                 </div>
 
-                <h6 class="text-muted mb-4">
-                    <i class="bi bi-building"></i> {{ vaga.empresa.nome }} |
-                    <i class="bi bi-calendar"></i> Postada em {{ vaga.criado_em|date:"d/m/Y" }}
-                </h6>
-
                 <hr>
 
-                <div class="mt-4">
-                    <h5 class="fw-bold mb-3">Descrição da Vaga</h5>
-                    <p class="text-secondary" style="white-space: pre-wrap; line-height: 1.6;">{{ vaga.descricao }}</p>
+                <div class="vaga-descricao mb-5">
+                    <h4 class="fw-bold">Descrição da Vaga</h4>
+                    <p class="text-secondary" style="white-space: pre-line;">{{ vaga.descricao }}</p>
                 </div>
 
-                <div class="mt-5 d-flex gap-2">
-                    <a href="{% url 'vaga_list' %}" class="btn btn-outline-secondary px-4">Voltar</a>
-                    <button class="btn btn-primary px-5 fw-bold">Candidatar-se</button>
+                <div class="actions d-flex gap-2">
+                    {% if user.is_authenticated and user.empresa == vaga.empresa %}
+                    <a href="{% url 'vaga_update' vaga.pk %}" class="btn btn-dark px-4">Editar Vaga</a>
+                    <a href="{% url 'vaga_delete' vaga.pk %}" class="btn btn-outline-danger px-4">Remover</a>
+
+                    {% elif request.session.candidato_cpf %}
+                    <form action="#" method="POST" class="w-100">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">
+                            <i class="bi bi-send-fill"></i> Confirmar Minha Candidatura
+                        </button>
+                    </form>
+
+                    {% elif not user.is_authenticated %}
+                    <div class="alert alert-warning w-100 mb-0" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        Para se candidatar, <a href="{% url 'login_candidato' %}" class="alert-link">identifique-se
+                            aqui</a>.
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="mt-4">
+                    <a href="{% url 'vaga_list' %}" class="text-decoration-none text-muted">
+                        <i class="bi bi-arrow-left"></i> Voltar para a lista
+                    </a>
                 </div>
             </div>
         </div>
