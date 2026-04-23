@@ -17,5 +17,9 @@ urlpatterns = [
     path('vaga/<int:pk>/editar/', views.VagaUpdateView.as_view(), name='vaga_update'),
     path('vaga/<int:pk>/remover/', views.VagaDeleteView.as_view(), name='vaga_delete'),
 
+    # Ver detalhes da vaga 
     path('vaga/<int:pk>/', views.VagaDetailView.as_view(), name='vaga_detail'),
+
+    # Logout (autoexplicativo)
+    path('logout/', views.logout_view, name='logout'),
 ]

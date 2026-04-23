@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, TemplateView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
@@ -90,3 +90,8 @@ class VagaDetailView(DetailView):
     model = Vaga
     template_name = 'vagas/vaga_detail.html'
     context_object_name = 'vaga'
+
+def logout_view(request):
+    logout(request)
+    messages.info(request, "Você saiu com sucesso!")
+    return redirect('home')

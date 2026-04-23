@@ -31,6 +31,7 @@ class BaseModel(models.Model): #Aplicando o conceito DRY
 class Empresa(BaseModel):  #Ele não depende de ninguém, mas outros dependerão dele.
     usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='empresa', null=True, blank=True)
     nome = models.CharField(max_length=100)
+    cnpj = models.CharField(max_length=18)
     site = models.URLField(blank=True)  # O site é opcional (blank=True)
     email_contato = models.EmailField(unique=True)
 
