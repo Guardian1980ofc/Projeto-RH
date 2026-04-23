@@ -11,6 +11,9 @@ urlpatterns = [
     path('login/candidato/', views.login_candidato, name='login_candidato'),    
     path('login/empresa/', views.login_empresa, name='login_empresa'), 
     
+    # Processo de Candidatura
+    path('vaga/<int:pk>/aplicar/', views.aplicar_vaga, name='aplicar_vaga'),
+
     # CRUD Empresa (O motor do sistema)
     path('vaga/nova/', views.VagaCreateView.as_view(), name='vaga_create'),
     path('vaga/<int:pk>/editar/', views.VagaUpdateView.as_view(), name='vaga_update'),

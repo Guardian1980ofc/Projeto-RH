@@ -49,15 +49,17 @@ class Vaga(BaseModel):
     def __str__(self):
         return f"{self.titulo} - {self.empresa.nome}"
 
-class Candidatura(BaseModel):
-    # Relacionamento com o usuário do Django e com a Vaga
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+class Candidatura(models.Model):
     vaga = models.ForeignKey(Vaga, on_delete=models.CASCADE, related_name='candidatos')
-    mensagem = models.TextField(help_text="Fale um pouco sobre sua experiência")
+    nome_candidato = models.CharField(max_length=100)
+    cpf_candidato = models.CharField(max_length=14)
+    data_candidatura = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        # Evita que o mesmo usuário se candidate duas vezes na mesma vaga
-        unique_together = ('usuario', 'vaga')
+        verbose_name = "Candidatura"
+        verbose_name_plural = "Candidaturas"
+        # Impede o mesmo CPF de se inscrever na mesma vaga
+        unique_together = ('vaga', 'cpf_candidato')
 
     def __str__(self):
-        return f"{self.usuario.username} -> {self.vaga.titulo}"
+        return f"{self.nome_candidato} -> {self.vaga.titulo}"

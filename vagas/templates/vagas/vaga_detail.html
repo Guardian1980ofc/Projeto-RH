@@ -29,7 +29,7 @@
                     <a href="{% url 'vaga_delete' vaga.pk %}" class="btn btn-outline-danger px-4">Remover</a>
 
                     {% elif request.session.candidato_cpf %}
-                    <form action="#" method="POST" class="w-100">
+                    <form action="{% url 'aplicar_vaga' vaga.pk %}" method="POST" class="w-100">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">
                             <i class="bi bi-send-fill"></i> Confirmar Minha Candidatura

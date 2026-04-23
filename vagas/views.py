@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, TemplateView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
-from .models import Vaga, Empresa 
+from django.views.decorators.http import require_POST
+from .models import Vaga, Empresa, Candidatura 
 
 # --- VIEWS PÚBLICAS / CANDIDATO ---
 
@@ -68,6 +69,35 @@ def login_empresa(request):
             
     return render(request, 'vagas/login_empresa.html')
 
+# --- LOGICA DE CANDIDATURA ---
+
+@require_POST # Força a função a aceitar apenas POST
+def aplicar_vaga(request, pk):
+    """
+    Função para processar a candidatura.
+    Pega os dados da sessão (login_candidato) e salva no modelo Candidatura.
+    """
+    vaga = get_object_or_404(Vaga, pk=pk)
+    nome = request.session.get('candidato_nome')
+    cpf = request.session.get('candidato_cpf')
+
+    if not nome or not cpf:
+        messages.error(request, "Você precisa se identificar antes de se candidatar.")
+        return redirect('login_candidato')
+
+    try:
+        Candidatura.objects.create(
+            vaga=vaga,
+            nome_candidato=nome,
+            cpf_candidato=cpf
+        )
+        messages.success(request, f"Candidatura para '{vaga.titulo}' enviada com sucesso!")
+    except:
+        # O unique_together no models.py impede duplicatas
+        messages.warning(request, "Você já está inscrito nesta vaga.")
+
+    return redirect('vaga_detail', pk=pk)
+
 # --- CRUD DA EMPRESA (GERENCIAMENTO) ---
 
 # Adicionei LoginRequiredMixin para garantir que só logados acessem
@@ -111,6 +141,12 @@ class VagaDetailView(DetailView):
     model = Vaga
     template_name = 'vagas/vaga_detail.html'
     context_object_name = 'vaga'
+
+    def get_context_data(self, **kwargs):
+        # Passa para o template se o candidato está identificado na sessão
+        context = super().get_context_data(**kwargs)
+        context['candidato_logado'] = self.request.session.get('candidato_nome')
+        return context
 
 def logout_view(request):
     logout(request) # Limpa o login da empresa
