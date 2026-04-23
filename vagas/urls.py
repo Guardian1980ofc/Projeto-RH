@@ -16,4 +16,6 @@ urlpatterns = [
     path('vaga/nova/', views.VagaCreateView.as_view(), name='vaga_create'),
     path('vaga/<int:pk>/editar/', views.VagaUpdateView.as_view(), name='vaga_update'),
     path('vaga/<int:pk>/remover/', views.VagaDeleteView.as_view(), name='vaga_delete'),
+
+    path('vaga/<int:pk>/', views.VagaDetailView.as_view(), name='vaga_detail'),
 ]

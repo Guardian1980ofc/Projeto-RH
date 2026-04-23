@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, TemplateView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, TemplateView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from .models import Vaga, Empresa 
 
@@ -85,3 +85,8 @@ class VagaDeleteView(LoginRequiredMixin, DeleteView):
         # AQUI ESTÁ A SEGURANÇA:
         # A mesma trava que a de editar
         return super().get_queryset().filter(empresa=self.request.user.empresa)
+    
+class VagaDetailView(DetailView):
+    model = Vaga
+    template_name = 'vagas/vaga_detail.html'
+    context_object_name = 'vaga'

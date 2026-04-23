@@ -1,0 +1,33 @@
+{% extends 'vagas/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-0 mt-4">
+            <div class="card-body p-5">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <h2 class="fw-bold text-primary">{{ vaga.titulo }}</h2>
+                    <span class="badge bg-success fs-6">R$ {{ vaga.salario }}</span>
+                </div>
+
+                <h6 class="text-muted mb-4">
+                    <i class="bi bi-building"></i> {{ vaga.empresa.nome }} |
+                    <i class="bi bi-calendar"></i> Postada em {{ vaga.criado_em|date:"d/m/Y" }}
+                </h6>
+
+                <hr>
+
+                <div class="mt-4">
+                    <h5 class="fw-bold mb-3">Descrição da Vaga</h5>
+                    <p class="text-secondary" style="white-space: pre-wrap; line-height: 1.6;">{{ vaga.descricao }}</p>
+                </div>
+
+                <div class="mt-5 d-flex gap-2">
+                    <a href="{% url 'vaga_list' %}" class="btn btn-outline-secondary px-4">Voltar</a>
+                    <button class="btn btn-primary px-5 fw-bold">Candidatar-se</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

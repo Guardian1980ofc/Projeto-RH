@@ -20,7 +20,7 @@
                     <small class="text-muted">Publicado em: {{ vaga.criado_em|date:"d/m/Y" }}</small>
                 </div>
                 <div>
-                    <a href="#" class="btn btn-primary px-4">Ver Detalhes</a>
+                    <a href="{% url 'vaga_detail' vaga.pk %}" class="btn btn-primary">Ver Detalhes</a>
                 </div>
             </div>
         </div>
