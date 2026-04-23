@@ -29,6 +29,7 @@ class BaseModel(models.Model): #Aplicando o conceito DRY
         super(BaseModel, self).delete()
 
 class Empresa(BaseModel):  #Ele não depende de ninguém, mas outros dependerão dele.
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='empresa', null=True, blank=True)
     nome = models.CharField(max_length=100)
     site = models.URLField(blank=True)  # O site é opcional (blank=True)
     email_contato = models.EmailField(unique=True)
