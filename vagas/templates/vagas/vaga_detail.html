@@ -24,16 +24,15 @@
                 </div>
 
                 <div class="actions d-flex gap-2">
-                    {# CASO 1: É A EMPRESA DONA DA VAGA #}
+                    {# LÓGICA DE EXIBIÇÃO DE BOTÕES #}
                     {% if user.is_authenticated and user.empresa == vaga.empresa %}
+                    {# Se for o dono da vaga #}
                     <a href="{% url 'vaga_update' vaga.pk %}" class="btn btn-dark px-4">Editar Vaga</a>
                     <a href="{% url 'vaga_delete' vaga.pk %}" class="btn btn-outline-danger px-4">Remover</a>
 
-                    {# CASO 2: É UM CANDIDATO IDENTIFICADO #}
                     {% elif request.session.candidato_cpf %}
-
+                    {# Se for um candidato identificado #}
                     {% if ja_inscrito %}
-                    {# Botão desativado para quem já se inscreveu #}
                     <button class="btn btn-secondary btn-lg w-100 fw-bold" disabled>
                         <i class="bi bi-check-all"></i> Você já está inscrito nesta vaga
                     </button>
@@ -46,8 +45,8 @@
                     </form>
                     {% endif %}
 
-                    {# CASO 3: VISITANTE ANÔNIMO #}
                     {% elif not user.is_authenticated %}
+                    {# Se for um visitante anônimo #}
                     <div class="alert alert-warning w-100 mb-0" role="alert">
                         <i class="bi bi-exclamation-triangle-fill"></i>
                         Para se candidatar, <a href="{% url 'login_candidato' %}" class="alert-link">identifique-se
@@ -61,10 +60,11 @@
                         <i class="bi bi-arrow-left"></i> Voltar para a lista
                     </a>
 
-                    {# Pequeno contador de inscritos visível para a empresa #}
+                    {# CONTADOR SEGURO #}
                     {% if user.is_authenticated and user.empresa == vaga.empresa %}
                     <span class="text-muted small">
-                        <i class="bi bi-people"></i> {{ vaga.candidaturas.count }} candidatos inscritos
+                        <i class="bi bi-people"></i>
+                        {{ vaga.candidatura_set.all.count }} candidatos inscritos
                     </span>
                     {% endif %}
                 </div>
