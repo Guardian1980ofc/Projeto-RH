@@ -24,18 +24,29 @@
                 </div>
 
                 <div class="actions d-flex gap-2">
+                    {# CASO 1: É A EMPRESA DONA DA VAGA #}
                     {% if user.is_authenticated and user.empresa == vaga.empresa %}
                     <a href="{% url 'vaga_update' vaga.pk %}" class="btn btn-dark px-4">Editar Vaga</a>
                     <a href="{% url 'vaga_delete' vaga.pk %}" class="btn btn-outline-danger px-4">Remover</a>
 
+                    {# CASO 2: É UM CANDIDATO IDENTIFICADO #}
                     {% elif request.session.candidato_cpf %}
+
+                    {% if ja_inscrito %}
+                    {# Botão desativado para quem já se inscreveu #}
+                    <button class="btn btn-secondary btn-lg w-100 fw-bold" disabled>
+                        <i class="bi bi-check-all"></i> Você já está inscrito nesta vaga
+                    </button>
+                    {% else %}
                     <form action="{% url 'aplicar_vaga' vaga.pk %}" method="POST" class="w-100">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">
                             <i class="bi bi-send-fill"></i> Confirmar Minha Candidatura
                         </button>
                     </form>
+                    {% endif %}
 
+                    {# CASO 3: VISITANTE ANÔNIMO #}
                     {% elif not user.is_authenticated %}
                     <div class="alert alert-warning w-100 mb-0" role="alert">
                         <i class="bi bi-exclamation-triangle-fill"></i>
@@ -45,10 +56,17 @@
                     {% endif %}
                 </div>
 
-                <div class="mt-4">
+                <div class="mt-4 d-flex justify-content-between align-items-center">
                     <a href="{% url 'vaga_list' %}" class="text-decoration-none text-muted">
                         <i class="bi bi-arrow-left"></i> Voltar para a lista
                     </a>
+
+                    {# Pequeno contador de inscritos visível para a empresa #}
+                    {% if user.is_authenticated and user.empresa == vaga.empresa %}
+                    <span class="text-muted small">
+                        <i class="bi bi-people"></i> {{ vaga.candidaturas.count }} candidatos inscritos
+                    </span>
+                    {% endif %}
                 </div>
             </div>
         </div>

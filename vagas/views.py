@@ -71,12 +71,8 @@ def login_empresa(request):
 
 # --- LOGICA DE CANDIDATURA ---
 
-@require_POST # Força a função a aceitar apenas POST
+@require_POST
 def aplicar_vaga(request, pk):
-    """
-    Função para processar a candidatura.
-    Pega os dados da sessão (login_candidato) e salva no modelo Candidatura.
-    """
     vaga = get_object_or_404(Vaga, pk=pk)
     nome = request.session.get('candidato_nome')
     cpf = request.session.get('candidato_cpf')
@@ -85,16 +81,18 @@ def aplicar_vaga(request, pk):
         messages.error(request, "Você precisa se identificar antes de se candidatar.")
         return redirect('login_candidato')
 
-    try:
-        Candidatura.objects.create(
+    ja_inscrito = Candidatura.objects.filter(vaga=vaga, cpf_candidato=cpf).exists()
+
+    if ja_inscrito:
+        messages.warning(request, "Você já está inscrito nesta vaga.")
+    else:
+        nova_candidatura = Candidatura(
             vaga=vaga,
             nome_candidato=nome,
             cpf_candidato=cpf
         )
+        nova_candidatura.save() # Forçamos o save
         messages.success(request, f"Candidatura para '{vaga.titulo}' enviada com sucesso!")
-    except:
-        # O unique_together no models.py impede duplicatas
-        messages.warning(request, "Você já está inscrito nesta vaga.")
 
     return redirect('vaga_detail', pk=pk)
 
@@ -143,9 +141,18 @@ class VagaDetailView(DetailView):
     context_object_name = 'vaga'
 
     def get_context_data(self, **kwargs):
-        # Passa para o template se o candidato está identificado na sessão
         context = super().get_context_data(**kwargs)
-        context['candidato_logado'] = self.request.session.get('candidato_nome')
+        cpf = self.request.session.get('candidato_cpf')
+        
+        # Verifica se este CPF já está inscrito nesta vaga específica
+        if cpf:
+            context['ja_inscrito'] = Candidatura.objects.filter(
+                vaga=self.get_object(), 
+                cpf_candidato=cpf
+            ).exists()
+        else:
+            context['ja_inscrito'] = False
+            
         return context
 
 def logout_view(request):

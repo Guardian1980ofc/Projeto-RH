@@ -6,6 +6,16 @@
     <span class="badge bg-primary fs-6">{{ vagas|length }} vagas encontradas</span>
 </div>
 
+{#Verifica se o usuário está logado E se ele é uma empresa #}
+{% if user.is_authenticated and user.empresa %}
+<div style="margin-bottom: 20px;">
+    <a href="{% url 'vaga_create' %}"
+        style="background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+        + Anunciar Nova Vaga
+    </a>
+</div>
+{% endif %}
+
 <div class="row">
     {% for vaga in vagas %}
     <div class="col-md-12 mb-3">
