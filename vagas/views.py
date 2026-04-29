@@ -12,6 +12,7 @@ from .models import Vaga, Empresa, Candidatura
 class HomeView(TemplateView):
     template_name = 'vagas/home.html'
 
+#READ
 class VagaListView(ListView):
     model = Vaga
     template_name = 'vagas/index.html'
@@ -72,6 +73,7 @@ def login_empresa(request):
 
 # --- LOGICA DE CANDIDATURA ---
 
+# mais simples e direto processá-la via função do que sobrescrever múltiplos métodos de uma FormView
 @require_POST
 def aplicar_vaga(request, pk):
     vaga = get_object_or_404(Vaga, pk=pk)
@@ -82,6 +84,7 @@ def aplicar_vaga(request, pk):
         messages.error(request, "Você precisa se identificar antes de se candidatar.")
         return redirect('login_candidato')
 
+    # mais rápido no banco de dados porque ele para de procurar assim que encontra o primeiro registro
     ja_inscrito = Candidatura.objects.filter(vaga=vaga, cpf_candidato=cpf).exists()
 
     if ja_inscrito:
@@ -98,7 +101,7 @@ def aplicar_vaga(request, pk):
     return redirect('vaga_detail', pk=pk)
 
 # --- CRUD DA EMPRESA (GERENCIAMENTO) ---
-
+#CREATE
 # Adicionei LoginRequiredMixin para garantir que só logados acessem
 class VagaCreateView(LoginRequiredMixin, CreateView):
     model = Vaga
@@ -111,7 +114,8 @@ class VagaCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.empresa = self.request.user.empresa
         return super().form_valid(form)
-
+    
+#UPDATE
 class VagaUpdateView(LoginRequiredMixin, UpdateView):
     model = Vaga
     template_name = 'vagas/vaga_form.html'
@@ -125,6 +129,7 @@ class VagaUpdateView(LoginRequiredMixin, UpdateView):
         base_queryset = super().get_queryset()
         return base_queryset.filter(empresa=self.request.user.empresa)
 
+#DELETE
 class VagaDeleteView(LoginRequiredMixin, DeleteView):
     model = Vaga
     template_name = 'vagas/vaga_confirm_delete.html'
@@ -135,7 +140,8 @@ class VagaDeleteView(LoginRequiredMixin, DeleteView):
         # AQUI ESTÁ A SEGURANÇA:
         # A mesma trava que a de editar
         return super().get_queryset().filter(empresa=self.request.user.empresa)
-    
+
+#READ    
 class VagaDetailView(DetailView):
     model = Vaga
     template_name = 'vagas/vaga_detail.html'
