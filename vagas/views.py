@@ -16,6 +16,7 @@ class VagaListView(ListView):
     model = Vaga
     template_name = 'vagas/index.html'
     context_object_name = 'vagas'
+    paginate_by = 6
 
     def get_queryset(self):
         # Aqui usamos o nosso "Porteiro" para mostrar apenas as vagas ATIVAS
