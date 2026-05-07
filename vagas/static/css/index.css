@@ -1,0 +1,96 @@
+/* Fundo da página e cor do texto */
+body {
+    background-color: #0a0a0a !important;
+    color: #ffffff !important;
+}
+
+/* O seu título H1 */
+h1.fw-bold {
+    color: #c77dff !important;
+}
+
+/* Badge de contagem (bg-primary) */
+.badge.bg-primary {
+    background-color: #7b2cbf !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+/* Botão 'Anunciar Nova Vaga' (btn-success) */
+.btn-success.fw-bold {
+    background-color: #7b2cbf !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+.btn-success.fw-bold:hover {
+    background-color: #5a189a !important;
+    box-shadow: 0 0 10px #7b2cbf;
+}
+
+/* Os Cards das vagas (shadow-sm border-0) */
+.card.shadow-sm.border-0 {
+    background-color: #14001f !important;
+    border: 1px solid #7b2cbf !important;
+    /* Força a borda roxa no seu card border-0 */
+    color: #ffffff !important;
+    transition: 0.3s;
+}
+
+.card.shadow-sm.border-0:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(123, 44, 191, 0.5) !important;
+}
+
+/* Título da vaga dentro do card (text-primary) */
+.card-title.text-primary {
+    color: #c77dff !important;
+}
+
+/* Badge da empresa (border-secondary) */
+.badge.border-secondary {
+    border-color: #7b2cbf !important;
+    color: #e0aaff !important;
+    background-color: transparent !important;
+}
+
+/* Salário (text-success) */
+.text-success.fw-bold {
+    color: #9d4edd !important;
+    /* Mudei para um lilás vibrante para destacar no preto */
+}
+
+/* Data de publicação (text-muted) */
+.text-muted {
+    color: #9d4edd !important;
+}
+
+/* Botão 'Ver Detalhes' (btn-primary) */
+.btn-primary.px-4 {
+    background-color: #7b2cbf !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+.btn-primary.px-4:hover {
+    background-color: #5a189a !important;
+}
+
+/* Estilo da sua Paginação original */
+.pagination .page-link {
+    background-color: #14001f !important;
+    color: #c77dff !important;
+    border: 1px solid #7b2cbf !important;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #7b2cbf !important;
+    border-color: #7b2cbf !important;
+    color: #ffffff !important;
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: #0a0a0a !important;
+    color: #444 !important;
+    border-color: #222 !important;
+}

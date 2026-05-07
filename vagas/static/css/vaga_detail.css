@@ -1,0 +1,69 @@
+/* Fundo e cores base da página de detalhes */
+body {
+    background-color: #0a0a0a !important;
+    color: #ffffff !important;
+}
+
+/* Card centralizado */
+.card.shadow-sm.border-0 {
+    background-color: #14001f !important;
+    border: 1px solid #7b2cbf !important;
+    color: #ffffff !important;
+}
+
+/* Título da Vaga */
+h1.fw-bold.text-primary {
+    color: #c77dff !important;
+}
+
+/* Textos de apoio e ícones */
+.text-muted {
+    color: #9d4edd !important;
+}
+
+/* Badge do Salário */
+.badge.bg-success {
+    background-color: #7b2cbf !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+/* Linha divisória */
+hr {
+    border-top: 1px solid #7b2cbf !important;
+    opacity: 1 !important;
+}
+
+/* Título interno 'Descrição da Vaga' e Texto */
+h4.fw-bold,
+.text-secondary {
+    color: #e0aaff !important;
+}
+
+/* Botões de Ação */
+.btn-dark.px-4 {
+    background-color: #000000 !important;
+    border: 1px solid #7b2cbf !important;
+    color: #c77dff !important;
+}
+
+.btn-primary.btn-lg {
+    background-color: #7b2cbf !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+.btn-primary.btn-lg:hover {
+    background-color: #5a189a !important;
+    box-shadow: 0 0 10px #7b2cbf;
+}
+
+.btn-outline-danger {
+    border-color: #ff4d6d !important;
+    color: #ff4d6d !important;
+}
+
+/* Links de navegação */
+a.text-muted:hover {
+    color: #ffffff !important;
+}

@@ -1,33 +1,49 @@
 {% extends 'vagas/base.html' %}
+{% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/login_empresa.css' %}">
+
 <div class="row justify-content-center">
     <div class="col-md-5">
-        <div class="card shadow border-0 mt-5">
+        <div class="card mt-5"
+            style="background-color: #14001f !important; border: 2px solid #7b2cbf !important; color: #ffffff !important; box-shadow: 0 0 20px rgba(123, 44, 191, 0.4);">
             <div class="card-body p-5">
                 <div class="text-center mb-4">
-                    <h2 class="fw-bold text-dark">Portal da Empresa</h2>
-                    <p class="text-muted">Gerencie suas vagas e candidatos</p>
+                    <h2 class="fw-bold"
+                        style="color: #c77dff !important; text-shadow: 0 0 10px rgba(199, 125, 255, 0.5);">
+                        Portal da Empresa
+                    </h2>
+                    <p style="color: #9d4edd !important;">Gerencie suas vagas e candidatos</p>
                 </div>
 
                 <form method="post">
                     {% csrf_token %}
 
                     <div class="mb-3">
-                        <label for="email" class="form-label fw-semibold">E-mail Corporativo</label>
+                        <label for="email" class="form-label fw-semibold" style="color: #e0aaff !important;">E-mail
+                            Corporativo</label>
                         <input type="email" name="email" id="email" class="form-control" placeholder="rh@empresa.com"
-                            required>
+                            required
+                            style="background-color: #0a0a0a !important; color: #ffffff !important; border: 1px solid #7b2cbf !important;">
                     </div>
 
                     <div class="mb-4">
-                        <label for="cnpj" class="form-label fw-semibold">CNPJ</label>
+                        <label for="cnpj" class="form-label fw-semibold" style="color: #e0aaff !important;">CNPJ</label>
                         <input type="text" name="cnpj" id="cnpj" class="form-control" placeholder="00.000.000/0000-00"
-                            required>
+                            required
+                            style="background-color: #0a0a0a !important; color: #ffffff !important; border: 1px solid #7b2cbf !important;">
                     </div>
 
                     <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-dark btn-lg">Acessar Painel</button>
-                        <a href="{% url 'home' %}" class="btn btn-outline-secondary">Voltar</a>
+                        <button type="submit" class="btn btn-lg"
+                            style="background-color: #7b2cbf !important; color: #ffffff !important; font-weight: bold; border: none;">
+                            Acessar Painel
+                        </button>
+                        <a href="{% url 'home' %}" class="btn btn-outline-secondary"
+                            style="border-color: #7b2cbf !important; color: #c77dff !important;">
+                            Voltar
+                        </a>
                     </div>
                 </form>
             </div>

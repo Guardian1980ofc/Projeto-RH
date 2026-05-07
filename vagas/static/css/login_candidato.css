@@ -1,0 +1,76 @@
+/* Fundo da página e cor do texto base */
+body {
+    background-color: #0a0a0a !important;
+    color: #ffffff !important;
+}
+
+/* O Card do formulário (shadow-sm border-0) */
+.card.shadow-sm.border-0 {
+    background-color: #14001f !important;
+    border: 1px solid #7b2cbf !important;
+    /* Força a borda roxa no card border-0 */
+    color: #ffffff !important;
+}
+
+/* Título 'Área do Candidato' (fw-bold) */
+h2.fw-bold {
+    color: #c77dff !important;
+}
+
+/* Subtítulo (text-muted) */
+.text-muted {
+    color: #9d4edd !important;
+}
+
+/* Labels do formulário (fw-bold) */
+.form-label.fw-bold {
+    color: #e0aaff !important;
+}
+
+/* Campos de entrada (nome e cpf) - Ajustado para a classe form-control-lg */
+.form-control.form-control-lg {
+    background-color: #0a0a0a !important;
+    border: 1px solid #7b2cbf !important;
+    color: #ffffff !important;
+}
+
+.form-control.form-control-lg::placeholder {
+    color: #444 !important;
+}
+
+.form-control.form-control-lg:focus {
+    background-color: #0a0a0a !important;
+    color: #ffffff !important;
+    border-color: #c77dff !important;
+    box-shadow: 0 0 10px #7b2cbf !important;
+}
+
+/* Pequeno texto de ajuda (form-text) */
+.form-text {
+    color: #9d4edd !important;
+}
+
+/* Botão 'Acessar Vagas' (btn-dark w-100 py-2 fw-bold mb-3) */
+.btn-dark.w-100.fw-bold {
+    background-color: #000000 !important;
+    border: 1px solid #7b2cbf !important;
+    color: #c77dff !important;
+    transition: 0.3s;
+}
+
+.btn-dark.w-100.fw-bold:hover {
+    background-color: #7b2cbf !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 15px #7b2cbf;
+}
+
+/* Botão 'Voltar' (btn-outline-secondary) */
+.btn-outline-secondary.w-100 {
+    border-color: #7b2cbf !important;
+    color: #c77dff !important;
+}
+
+.btn-outline-secondary.w-100:hover {
+    background-color: #240046 !important;
+    color: #ffffff !important;
+}

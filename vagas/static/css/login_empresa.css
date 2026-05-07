@@ -1,0 +1,60 @@
+body {
+    background-color: #0a0a0a !important;
+    color: #ffffff !important;
+}
+
+.card {
+    background-color: #14001f !important;
+    border: 2px solid #7b2cbf !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(123, 44, 191, 0.3) !important;
+}
+
+.card h2,
+.card h2.text-dark {
+    color: #c77dff !important;
+    text-shadow: 0 0 10px rgba(199, 125, 255, 0.5);
+}
+
+.form-label {
+    color: #e0aaff !important;
+}
+
+.form-control {
+    background-color: #0a0a0a !important;
+    border: 1px solid #7b2cbf !important;
+    color: #ffffff !important;
+}
+
+.form-control:focus {
+    background-color: #0a0a0a !important;
+    color: #ffffff !important;
+    border-color: #c77dff !important;
+    box-shadow: 0 0 10px #7b2cbf !important;
+}
+
+.btn-dark {
+    background-color: #7b2cbf !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+.btn-dark:hover {
+    background-color: #5a189a !important;
+    box-shadow: 0 0 15px #7b2cbf;
+}
+
+.btn-outline-secondary {
+    border-color: #7b2cbf !important;
+    color: #c77dff !important;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #240046 !important;
+    color: #ffffff !important;
+}
+
+.text-muted {
+    color: #9d4edd !important;
+}

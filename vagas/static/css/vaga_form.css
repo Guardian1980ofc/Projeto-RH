@@ -1,0 +1,84 @@
+/* Fundo da página */
+body {
+    background-color: #0a0a0a !important;
+    color: #ffffff !important;
+}
+
+/* O Card do formulário (shadow-sm border-0) */
+.card.shadow-sm.border-0 {
+    background-color: #14001f !important;
+    border: 1px solid #7b2cbf !important;
+    color: #ffffff !important;
+}
+
+/* Cabeçalho do Card (bg-dark text-white) */
+.card-header.bg-dark {
+    background-color: #000000 !important;
+    /* Preto total para contraste */
+    border-bottom: 2px solid #7b2cbf !important;
+}
+
+/* Título H3 dentro do header */
+.card-header h3 {
+    color: #c77dff !important;
+}
+
+/* Labels dos campos (fw-bold) */
+.form-label.fw-bold {
+    color: #e0aaff !important;
+    margin-bottom: 8px;
+}
+
+/* Campos de entrada (Injetados via Script no seu HTML) */
+.form-control {
+    background-color: #0a0a0a !important;
+    border: 1px solid #7b2cbf !important;
+    color: #ffffff !important;
+}
+
+.form-control:focus {
+    background-color: #0a0a0a !important;
+    color: #ffffff !important;
+    border-color: #c77dff !important;
+    box-shadow: 0 0 10px #7b2cbf !important;
+}
+
+/* Texto de ajuda e erros */
+.form-text {
+    color: #9d4edd !important;
+}
+
+.text-danger.small {
+    color: #ff4d6d !important;
+    /* Rosa neon para erros */
+}
+
+/* Linha divisória (hr) */
+hr.my-4 {
+    border-top: 1px solid #7b2cbf !important;
+    opacity: 0.5;
+}
+
+/* Botão 'Salvar Vaga' (btn-success px-4) */
+.btn-success.px-4 {
+    background-color: #7b2cbf !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+.btn-success.px-4:hover {
+    background-color: #5a189a !important;
+    box-shadow: 0 0 12px #7b2cbf;
+}
+
+/* Botão 'Cancelar' (btn-outline-secondary) */
+.btn-outline-secondary {
+    border-color: #7b2cbf !important;
+    color: #c77dff !important;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #240046 !important;
+    color: #ffffff !important;
+}

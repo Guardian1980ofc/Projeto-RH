@@ -1,11 +1,14 @@
 {% extends 'vagas/base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="card shadow-sm border-0">
-            <div class="card-header bg-dark text-white p-3">
-                <h3 class="mb-0">
+        <div class="card border-0 mt-4"
+            style="background-color: #14001f !important; border: 1px solid #7b2cbf !important; color: #ffffff !important; box-shadow: 0 0 20px rgba(123, 44, 191, 0.3);">
+            <div class="card-header p-3"
+                style="background-color: #000000 !important; border-bottom: 2px solid #7b2cbf !important;">
+                <h3 class="mb-0" style="color: #c77dff !important; text-shadow: 0 0 10px rgba(199, 125, 255, 0.5);">
                     {% if object %} Editar Vaga: {{ object.titulo }} {% else %} Publicar Nova Vaga {% endif %}
                 </h3>
             </div>
@@ -15,22 +18,31 @@
 
                     {% for field in form %}
                     <div class="mb-3">
-                        <label class="form-label fw-bold">{{ field.label }}</label>
+                        <label class="form-label fw-bold" style="color: #e0aaff !important;">{{ field.label }}</label>
+
                         {{ field }}
+
                         {% if field.help_text %}
-                        <div class="form-text">{{ field.help_text }}</div>
+                        <div class="form-text" style="color: #9d4edd !important;">{{ field.help_text }}</div>
                         {% endif %}
+
                         {% for error in field.errors %}
-                        <div class="text-danger small">{{ error }}</div>
+                        <div class="text-danger small" style="color: #ff4d6d !important;">{{ error }}</div>
                         {% endfor %}
                     </div>
                     {% endfor %}
 
-                    <hr class="my-4">
+                    <hr class="my-4" style="border-top: 1px solid #7b2cbf !important; opacity: 0.5;">
 
                     <div class="d-flex justify-content-end gap-2">
-                        <a href="{% url 'vaga_list' %}" class="btn btn-outline-secondary">Cancelar</a>
-                        <button type="submit" class="btn btn-success px-4">Salvar Vaga</button>
+                        <a href="{% url 'vaga_list' %}" class="btn btn-outline-secondary"
+                            style="border-color: #7b2cbf !important; color: #c77dff !important;">
+                            Cancelar
+                        </a>
+                        <button type="submit" class="btn px-4"
+                            style="background-color: #7b2cbf !important; color: #ffffff !important; font-weight: bold; border: none; box-shadow: 0 0 10px #7b2cbf;">
+                            Salvar Vaga
+                        </button>
                     </div>
                 </form>
             </div>
@@ -39,8 +51,15 @@
 </div>
 
 <script>
+    /* Garante que os campos gerados pelo Django fiquem escuros e com borda roxa */
     document.querySelectorAll('input, textarea, select').forEach(element => {
         element.classList.add('form-control');
+        element.style.backgroundColor = '#0a0a0a';
+        element.style.color = '#ffffff';
+        element.style.borderColor = '#7b2cbf';
+
+        // Remove classes do Bootstrap que podem conflitar
+        element.classList.remove('bg-white', 'text-dark');
     });
 </script>
 {% endblock %}

@@ -1,0 +1,63 @@
+/* 1. FUNDO DA PÁGINA */
+body {
+    background-color: #0a0a0a !important;
+    color: #ffffff !important;
+}
+
+/* 2. O CARD (Forçando o fundo escuro e borda vermelha neon) */
+.card.border-danger {
+    background-color: #1a0000 !important;
+    /* Vermelho quase preto */
+    border: 2px solid #ff0033 !important;
+    /* Vermelho neon */
+    box-shadow: 0 0 20px rgba(255, 0, 51, 0.4) !important;
+}
+
+/* 3. CABEÇALHO DO CARD (Removendo o fundo sólido do Bootstrap) */
+.card-header.bg-danger {
+    background-color: #000000 !important;
+    border-bottom: 2px solid #ff0033 !important;
+    color: #ff0033 !important;
+    text-shadow: 0 0 10px #ff0033;
+    font-weight: bold;
+}
+
+/* 4. TÍTULO DA VAGA (O texto vermelho em destaque) */
+.text-danger,
+h3.text-danger {
+    color: #ff0033 !important;
+    text-shadow: 0 0 15px rgba(255, 0, 51, 0.6);
+}
+
+/* 5. ALERTA DE AVISO (A caixa amarela do Bootstrap) */
+.alert-warning {
+    background-color: rgba(255, 153, 0, 0.1) !important;
+    border: 1px solid #ff9900 !important;
+    color: #ff9900 !important;
+}
+
+/* 6. BOTÕES */
+/* Botão Confirmar (Vermelho Neon) */
+.btn-danger {
+    background-color: #ff0033 !important;
+    border: none !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 15px #ff0033;
+    font-weight: bold;
+}
+
+.btn-danger:hover {
+    background-color: #cc002c !important;
+    box-shadow: 0 0 25px #ff0033;
+}
+
+/* Botão Cancelar */
+.btn-secondary {
+    background-color: transparent !important;
+    border: 1px solid #444 !important;
+    color: #ffffff !important;
+}
+
+.btn-secondary:hover {
+    background-color: #222 !important;
+}

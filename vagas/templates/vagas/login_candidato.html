@@ -1,36 +1,44 @@
 {% extends 'vagas/base.html' %}
+{% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/login_candidato.css' %}">
 
-{% block content %}
 <div class="row justify-content-center">
     <div class="col-md-5">
-        <div class="card shadow-sm border-0">
+        <div class="card border-0 mt-5 shadow-sm"
+            style="background-color: #14001f !important; border: 1px solid #7b2cbf !important; color: #ffffff !important;">
+
             <div class="card-body p-5">
                 <div class="text-center mb-4">
-                    <h2 class="fw-bold">Área do Candidato</h2>
-                    <p class="text-muted">Identifique-se para se candidatar às vagas</p>
+                    <h2 class="fw-bold" style="color: #c77dff !important;">Área do Candidato</h2>
+                    <p style="color: #e0aaff !important;">Identifique-se para se candidatar às vagas</p>
                 </div>
 
                 <form method="POST">
                     {% csrf_token %}
 
                     <div class="mb-3">
-                        <label class="form-label fw-bold">Seu Nome</label>
+                        <label class="form-label fw-bold" style="color: #c77dff !important;">Seu Nome</label>
                         <input type="text" name="nome" class="form-control form-control-lg" placeholder="Ex: João Silva"
-                            required>
+                            required
+                            style="background-color: #0a0a0a !important; color: white !important; border: 1px solid #3c096c !important;">
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label fw-bold">CPF</label>
+                        <label class="form-label fw-bold" style="color: #c77dff !important;">CPF</label>
                         <input type="text" name="cpf" class="form-control form-control-lg" placeholder="000.000.000-00"
-                            required>
-                        <div class="form-text">Apenas números ou com pontos e traço.</div>
+                            required
+                            style="background-color: #0a0a0a !important; color: white !important; border: 1px solid #3c096c !important;">
+                        <div class="form-text" style="color: #9d4edd !important;">Apenas números ou com pontos e traço.
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn btn-dark w-100 py-2 fw-bold mb-3">
+                    <button type="submit" class="btn w-100 py-2 fw-bold mb-3"
+                        style="background-color: #7b2cbf !important; color: white !important; box-shadow: 0 0 15px #7b2cbf;">
                         Acessar Vagas
                     </button>
 
-                    <a href="{% url 'home' %}" class="btn btn-outline-secondary w-100 py-2">
+                    <a href="{% url 'home' %}" class="btn btn-outline-secondary w-100 py-2"
+                        style="border: 1px solid #7b2cbf !important; color: #c77dff !important;">
                         Voltar
                     </a>
                 </form>

@@ -1,0 +1,73 @@
+/* Fundo geral aplicado diretamente na tag body */
+body {
+    background-color: #0a0a0a !important;
+    color: #ffffff !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+/* Transforma o seu 'bg-dark' original no preto/roxo do seu amigo */
+.navbar.bg-dark {
+    background-color: #000000 !important;
+    border-bottom: 2px solid #7b2cbf !important;
+}
+
+/* Estiliza a Logo original */
+.navbar-brand {
+    color: #c77dff !important;
+}
+
+/* Estiliza os Links originais */
+.nav-link {
+    color: #e0aaff !important;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #ffffff !important;
+}
+
+/* Ajusta o botão 'Acessar Painel' original (btn-primary) */
+.btn-primary.btn-sm {
+    background-color: #7b2cbf !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+.btn-primary.btn-sm:hover {
+    background-color: #5a189a !important;
+}
+
+/* Ajusta o botão de Sair (btn-outline-warning / btn-outline-danger) */
+.btn-outline-warning,
+.btn-outline-danger {
+    border-color: #9d4edd !important;
+    color: #c77dff !important;
+}
+
+.btn-outline-warning:hover,
+.btn-outline-danger:hover {
+    background-color: #7b2cbf !important;
+    color: #fff !important;
+}
+
+/* Alerta de mensagens do Django */
+.alert {
+    background-color: #240046 !important;
+    color: #e0aaff !important;
+    border: 1px solid #7b2cbf !important;
+}
+
+/* Footer original */
+footer.border-top {
+    border-top: 1px solid #7b2cbf !important;
+}
+
+footer p {
+    color: #9d4edd !important;
+}
